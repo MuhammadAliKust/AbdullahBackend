@@ -21,7 +21,7 @@ class AuthServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return RegisterModel.fromJson(jsonDecode(response.body));
     } else {
-      throw 'Something went wrong';
+      throw response.reasonPhrase.toString();
     }
   }
 
@@ -35,7 +35,7 @@ class AuthServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return LoginModel.fromJson(jsonDecode(response.body));
     } else {
-      throw 'Something went wrong';
+      throw response.reasonPhrase.toString();
     }
   }
 
