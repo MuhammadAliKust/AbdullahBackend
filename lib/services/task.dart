@@ -11,13 +11,14 @@ class TaskServices {
   Future<TaskModel> createTask(
       {required String description, required String token}) async {
     http.Response response = await http.post(Uri.parse('${baseUrl}todos/add'),
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',
+        'Authorization':token},
         body: jsonEncode({"description": description}));
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return TaskModel.fromJson(jsonDecode(response.body));
     } else {
-      throw 'Something went wrong';
+      throw response.reasonPhrase.toString();
     }
   }
 

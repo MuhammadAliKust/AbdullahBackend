@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:abdullah_backend/services/auth.dart';
+import 'package:abdullah_backend/views/create_task.dart';
+import 'package:abdullah_backend/views/get_all_task.dart';
 import 'package:abdullah_backend/views/register.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +56,10 @@ class _LoginViewState extends State<LoginView> {
                             .then((user) {
                           isLoading = false;
                           setState(() {});
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => GetAllTaskView()));
                           log(val.token.toString());
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(user.user!.name.toString())));
